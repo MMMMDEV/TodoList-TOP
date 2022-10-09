@@ -1,6 +1,39 @@
+:root {
+    --side-header-width: 30%;
+    --back-drop-color: #191919;
+    --accent-dark: #101010;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
+
 *:focus {
     outline: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    background-color: var(--back-drop-color);
+}
+
+.side-header {
+    width: var(--side-header-width);
+    height: 100vh;
+    display: grid;
+    position: fixed;
+    background-color: var(--accent-dark);
+    border-radius: 0px 15px 15px 0px;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
 }
