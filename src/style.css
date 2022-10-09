@@ -1,7 +1,19 @@
+@font-face {
+    font-family: "poppins";
+    src: url(./fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Mukta";
+    src: url(./fonts/Mukta-Regular.ttf);
+}
+
 :root {
-    --side-header-width: 30%;
+    --side-header-width: 125px;
     --back-drop-color: #191919;
     --accent-dark: #101010;
+    --white-color: #fafafa;
+    --icon-size: 15px;
 }
 
 *, *::before, *::after {
@@ -28,12 +40,82 @@ body {
     width: var(--side-header-width);
     height: 100vh;
     display: grid;
+    grid-template-rows: 1fr 1fr 2fr 0.5fr;
     position: fixed;
     background-color: var(--accent-dark);
     border-radius: 0px 15px 15px 0px;
+    font-family: "poppins";
 }
 
 .main {
     width: 100%;
     height: 100%;
+}
+
+/* todolist */
+
+.todo-list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.text {
+    margin: 0px;
+    color: var(--white-color);
+    display: flex;
+    flex: 1;
+}
+
+.today-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.week-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.month-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.upcoming-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
