@@ -1,7 +1,7 @@
 import { sideHeader } from "./first-load";
 
-import sourcesIconWorld from "./images/world.svg";
-import settingsIconGear from "./images/settings.svg";
+import sourcesIconWorld from "../images/world.svg";
+import settingsIconGear from "../images/settings.svg";
 
 export function adjustmentsFunction() {
     // create obj

@@ -1,7 +1,7 @@
 import { sideHeader } from "./first-load";
 
-import prioritiesArrawIcon from "./images/angle-left.svg";
-import addProjectIcon from "./images/plus.svg"
+import prioritiesArrawIcon from "../images/angle-left.svg";
+import addProjectIcon from "../images/plus.svg"
 
 export function projectsFunction() {
     // create obj

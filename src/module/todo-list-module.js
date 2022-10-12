@@ -1,9 +1,9 @@
 import { sideHeader } from "./first-load";
 
-import todayClockIcon from "./images/time-twenty-four.svg";
-import weekClockIcon from "./images/time-fast.svg";
-import monthGridIcon from "./images/grid.svg";
-import upcomingCalenderIcon from "./images/calendar-clock.svg";
+import todayClockIcon from "../images/time-twenty-four.svg";
+import weekClockIcon from "../images/time-fast.svg";
+import monthGridIcon from "../images/grid.svg";
+import upcomingCalenderIcon from "../images/calendar-clock.svg";
 
 export function todoList() {
     // create obj

@@ -1,6 +1,6 @@
 import { main } from "./first-load";
 
-import smileFace from "./images/smile-beam.svg";
+import smileFace from "../images/smile-beam.svg";
 
 export function mainContentFunction() {
     // creating obj

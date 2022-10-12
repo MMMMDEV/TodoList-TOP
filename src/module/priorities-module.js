@@ -1,9 +1,9 @@
 import { sideHeader } from "./first-load";
 
-import priorityClockRed from "./images/time-oclock-red.svg";
-import priorityClockYellow from "./images/time-oclock-yellow.svg";
-import priorityClockBlue from "./images/time-oclock-blue.svg";
-import prioritiesArrawIcon from "./images/angle-left.svg";
+import priorityClockRed from "../images/time-oclock-red.svg";
+import priorityClockYellow from "../images/time-oclock-yellow.svg";
+import priorityClockBlue from "../images/time-oclock-blue.svg";
+import prioritiesArrawIcon from "../images/angle-left.svg";
 
 export function prioritiesFuction() {
     // create obj

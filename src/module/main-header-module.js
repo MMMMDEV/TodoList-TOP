@@ -1,7 +1,7 @@
 import { main } from "./first-load";
 
-import ArrawIcon from "./images/angle-left.svg";
-import AddIcon from "./images/plus.svg"
+import ArrawIcon from "../images/angle-left.svg";
+import AddIcon from "../images/plus.svg"
 
 export function mainHeaderFunction() {
     // create obj

@@ -1,6 +1,6 @@
 import "./style.css";
 import "./normalize.css";
 
-import { firstLoad } from "./first-load";
+import { firstLoad } from "./module/first-load";
 
 firstLoad();
