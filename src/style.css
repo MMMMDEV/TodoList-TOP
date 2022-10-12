@@ -9,14 +9,15 @@
 }
 
 :root {
-    --side-header-width: 125px;
-    --main-width: calc(100% - var(--side-header-width));
     --back-drop-color: #191919;
     --accent-dark: #101010;
     --white-color: #fafafa;
+    --side-header-width: 125px;
+    --main-width: calc(100% - var(--side-header-width));
     --icon-size: 15px;
     --project-height: 50px;
     --add-project-height: 35px;
+    --header-main-height: 30px;
 }
 
 *, *::before, *::after {
@@ -288,4 +289,73 @@ body {
     width: var(--main-width);
     height: 100%;
     margin-left: var(--side-header-width);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-main {
+    width: 100%;
+    height: var(--header-main-height);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "mukta";
+}
+
+.hide-side-header img,
+.add-new-item img {
+    margin: 0;
+}
+
+.hide-side-header img {
+    margin-left: 10px;
+}
+
+.add-new-item img {
+    margin-right: 10px;
+}
+
+.current-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.current-section p {
+    justify-content: center;
+}
+
+.main-content {
+    width: 100%;
+    height: calc(100% - var(--header-main-height));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.done-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.done-div p {
+    font-family: "mukta";
+    flex: none;
+    color: #939393;
+}
+
+.done-div img {
+    width: calc(var(--icon-size) * 5);
+    height: calc(var(--icon-size) * 5);
+    padding-top: 10px;
+    margin: 0px;
 }
