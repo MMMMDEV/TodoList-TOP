@@ -27,4 +27,4 @@ adjustmentsFunction();
 mainHeaderFunction();
 mainContentFunction();
 
-export {sideHeader, main};
+export {sideHeader, main, content};

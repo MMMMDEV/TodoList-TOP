@@ -2,13 +2,16 @@ import { main } from "./first-load";
 
 import smileFace from "../images/smile-beam.svg";
 
+const sectionTypeText = document.createElement("p");
+const mainContent = document.createElement("div");
+const DoneDiv = document.createElement("div");
+
+let vacant = false;
+
 export function mainContentFunction() {
     // creating obj
-    const mainContent = document.createElement("div");
 
-    const DoneDiv = document.createElement("div");
     const doneText = document.createElement("p");
-    const sectionTypeText = document.createElement("p");
     const faceIcon = document.createElement("img");
     doneText.textContent = "All Done For";
     sectionTypeText.textContent = "Today!";
@@ -28,4 +31,7 @@ export function mainContentFunction() {
     DoneDiv.insertAdjacentElement("beforeend", doneText);
     DoneDiv.insertAdjacentElement("beforeend", sectionTypeText);
     DoneDiv.insertAdjacentElement("beforeend", faceIcon);
+
 }
+
+export {sectionTypeText, mainContent, DoneDiv};

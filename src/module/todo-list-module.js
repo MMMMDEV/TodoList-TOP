@@ -5,29 +5,30 @@ import weekClockIcon from "../images/time-fast.svg";
 import monthGridIcon from "../images/grid.svg";
 import upcomingCalenderIcon from "../images/calendar-clock.svg";
 
+const todayContainer = document.createElement("div");
+const weekContainer = document.createElement("div");
+const monthContainer = document.createElement("div");
+const upcomingContainer = document.createElement("div");
+
 export function todoList() {
     // create obj
     const todoList = document.createElement("div");
 
-    const todayContainer = document.createElement("div");
     const todayIcon = document.createElement("img");
     const todayText = document.createElement("p");
     todayIcon.src = todayClockIcon;
     todayText.textContent = "Today";
 
-    const weekContainer = document.createElement("div");
     const weekIcon = document.createElement("img");
     const weekText = document.createElement("p");
     weekIcon.src = weekClockIcon;
     weekText.textContent = "Week";
 
-    const monthContainer = document.createElement("div");
     const monthIcon = document.createElement("img");
     const monthText = document.createElement("p");
     monthIcon.src = monthGridIcon;
     monthText.textContent = "Month";
 
-    const upcomingContainer = document.createElement("div");
     const upcomingIcon = document.createElement("img");
     const upcomingText = document.createElement("p");
     upcomingIcon.src = upcomingCalenderIcon;
@@ -71,3 +72,5 @@ export function todoList() {
     upcomingContainer.insertAdjacentElement("beforeend", upcomingIcon);
     upcomingContainer.insertAdjacentElement("beforeend", upcomingText);
 };
+
+export {todayContainer, weekContainer, monthContainer, upcomingContainer};

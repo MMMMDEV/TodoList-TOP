@@ -3,6 +3,10 @@ import { main } from "./first-load";
 import ArrawIcon from "../images/angle-left.svg";
 import AddIcon from "../images/plus.svg"
 
+const sectionText = document.createElement("p");
+
+const addIcon = document.createElement("img");
+
 export function mainHeaderFunction() {
     // create obj
     const headerMain = document.createElement("div");
@@ -10,10 +14,8 @@ export function mainHeaderFunction() {
     const hideIcon = document.createElement("img");
     hideIcon.src = ArrawIcon;
     const currentSection  = document.createElement("div");
-    const sectionText = document.createElement("p");
     sectionText.textContent = "Today";
     const addNewItem = document.createElement("div");
-    const addIcon = document.createElement("img");
     addIcon.src = AddIcon;
 
     // add classes
@@ -35,3 +37,5 @@ export function mainHeaderFunction() {
     addNewItem.insertAdjacentElement("beforeend", addIcon);
 
 }
+
+export {sectionText, addIcon};

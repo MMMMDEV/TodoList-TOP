@@ -12,12 +12,21 @@
     --back-drop-color: #191919;
     --accent-dark: #101010;
     --white-color: #fafafa;
+    --accent-cream: rgb(201, 190, 162);
+    --blue-color: #4791FF;
     --side-header-width: 125px;
     --main-width: calc(100% - var(--side-header-width));
     --icon-size: 15px;
     --project-height: 50px;
     --add-project-height: 35px;
     --header-main-height: 30px;
+    --label-width: 100%;
+    --textarea-height: 100px;
+    --submit-height: 40px;
+    --submit-width: 90px;
+    --input: 100%;
+    --item-width: 80%;
+    --item-height: 60px;
 }
 
 *, *::before, *::after {
@@ -38,6 +47,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: var(--back-drop-color);
+    position: relative;
 }
 
 
@@ -345,6 +355,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    scale: 1;
 }
 
 .done-div p {
@@ -358,4 +369,176 @@ body {
     height: calc(var(--icon-size) * 5);
     padding-top: 10px;
     margin: 0px;
+}
+
+/* todo.js */
+
+.today-main,
+.week-main,
+.month-main,
+.upcoming-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* add-module */
+
+.add-container {
+    width: 100%;
+    height: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(5, 5, 5);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: none;
+    transition: 0.8s ease-in-out;
+    translate: 0px, 200px;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10;
+    transition: 0.8s ease-in-out;
+}
+
+.active-add {
+    height: 60%;
+    box-shadow:  0px 0px 30px white;
+}
+
+.active-overlay {
+    opacity: 0.5;
+    pointer-events: all;
+}
+
+.form-add {
+    width: 75%;
+    height: 0%;
+    scale: 0;
+    display: flex;
+    flex-direction: column;
+    transition: 0.8s ease-in-out;
+    gap: 20px;
+}
+
+.form-active {
+    scale: 1;
+    height: 80%;
+}
+
+.label {
+    width: var(--label-width);
+    color: var(--white-color);
+    font-family: "mukta";
+}
+
+.input {
+    width: var(--input);
+    background-color: var(--white-color);
+    flex: 1;
+    font-family: "mukta";
+    border: 0px solid transparent;
+    border-radius: 15px;
+    padding: 3px;
+}
+
+
+
+.tittle-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.description-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.description-container label {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex: 1;
+}
+
+.textarea {
+    width: 100%;
+    height: var(--textarea-height);
+    border-radius: 15px;
+    padding: 3px;
+    font-family: "mukta";
+}
+
+.date-container {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.date-container label {
+    width: 45px;
+}
+
+.date-container input {
+    flex: none;
+    width: 120px;
+    text-align: center;
+}
+
+.btn-submit-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-add {
+    width: var(--submit-width);
+    height: var(--submit-height);
+    background-color: var(--white-color);
+    margin-top: 15px;
+    font-family: "mukta";
+    border: 0px solid transparent;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    font-size: 1.3rem;
+}
+
+.item {
+    width: var(--item-width);
+    height: var(--item-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: var(--accent-dark);
 }
