@@ -9,10 +9,10 @@ const todayContainer = document.createElement("div");
 const weekContainer = document.createElement("div");
 const monthContainer = document.createElement("div");
 const upcomingContainer = document.createElement("div");
+const TodoList = document.createElement("div");
 
 export function todoList() {
     // create obj
-    const todoList = document.createElement("div");
 
     const todayIcon = document.createElement("img");
     const todayText = document.createElement("p");
@@ -35,7 +35,7 @@ export function todoList() {
     upcomingText.textContent = "Upcoming";
 
     // add class
-    todoList.classList.add("todo-list");
+    TodoList.classList.add("todo-list");
 
     todayContainer.classList.add("today-container");
     todayIcon.classList.add("today-icon");
@@ -58,11 +58,11 @@ export function todoList() {
     upcomingText.classList.add("text");
 
     // append
-    sideHeader.insertAdjacentElement("beforeend", todoList);
-    todoList.insertAdjacentElement("beforeend", todayContainer);
-    todoList.insertAdjacentElement("beforeend", weekContainer);
-    todoList.insertAdjacentElement("beforeend", monthContainer);
-    todoList.insertAdjacentElement("beforeend", upcomingContainer);
+    sideHeader.insertAdjacentElement("beforeend", TodoList);
+    TodoList.insertAdjacentElement("beforeend", todayContainer);
+    TodoList.insertAdjacentElement("beforeend", weekContainer);
+    TodoList.insertAdjacentElement("beforeend", monthContainer);
+    TodoList.insertAdjacentElement("beforeend", upcomingContainer);
     todayContainer.insertAdjacentElement("beforeend", todayIcon);
     todayContainer.insertAdjacentElement("beforeend", todayText);
     weekContainer.insertAdjacentElement("beforeend", weekIcon);
@@ -73,4 +73,4 @@ export function todoList() {
     upcomingContainer.insertAdjacentElement("beforeend", upcomingText);
 };
 
-export {todayContainer, weekContainer, monthContainer, upcomingContainer};
+export {todayContainer, weekContainer, monthContainer, upcomingContainer, TodoList};

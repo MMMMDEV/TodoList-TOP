@@ -6,8 +6,6 @@ const sectionTypeText = document.createElement("p");
 const mainContent = document.createElement("div");
 const DoneDiv = document.createElement("div");
 
-let vacant = false;
-
 export function mainContentFunction() {
     // creating obj
 

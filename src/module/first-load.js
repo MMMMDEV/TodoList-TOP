@@ -12,8 +12,8 @@ const main = document.createElement("div");
 
 export function firstLoad() {
     // adding classes
-    sideHeader.classList.add("side-header");
-    main.classList.add("main");
+    sideHeader.classList.add("side-header-active");
+    main.classList.add("main-active");
 
     // appending
     content.insertAdjacentElement("beforeend", sideHeader);

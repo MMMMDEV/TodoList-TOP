@@ -6,12 +6,12 @@ import AddIcon from "../images/plus.svg"
 const sectionText = document.createElement("p");
 
 const addIcon = document.createElement("img");
+const hideIcon = document.createElement("img");
 
 export function mainHeaderFunction() {
     // create obj
     const headerMain = document.createElement("div");
     const hideSideHeader = document.createElement("div");
-    const hideIcon = document.createElement("img");
     hideIcon.src = ArrawIcon;
     const currentSection  = document.createElement("div");
     sectionText.textContent = "Today";
@@ -38,4 +38,4 @@ export function mainHeaderFunction() {
 
 }
 
-export {sectionText, addIcon};
+export {sectionText, addIcon, hideIcon};
