@@ -5,20 +5,21 @@ import priorityClockYellow from "../images/time-oclock-yellow.svg";
 import priorityClockBlue from "../images/time-oclock-blue.svg";
 import prioritiesArrawIcon from "../images/angle-left.svg";
 
+const priorities = document.createElement("div");
+const prioritiesIcon  = document.createElement("img");
+const priorityContent = document.createElement("div");
+const critical = document.createElement("div");
+const major = document.createElement("div");
+const moderate = document.createElement("div");
+
 export function prioritiesFuction() {
     // create obj
     const priority = document.createElement("div");
 
-    const priorities = document.createElement("div");
-    const prioritiesIcon  = document.createElement("img");
     const prioritiesText = document.createElement("p");
     prioritiesIcon.src = prioritiesArrawIcon;    
     prioritiesText.textContent = "Priorities";
 
-    const priorityContent = document.createElement("div");
-    const critical = document.createElement("div");
-    const major = document.createElement("div");
-    const moderate = document.createElement("div");
     const criticalIcon = document.createElement("img");
     const majorIcon = document.createElement("img");
     const moderateIcon = document.createElement("img");
@@ -66,3 +67,5 @@ export function prioritiesFuction() {
     moderate.insertAdjacentElement("beforeend", moderateIcon);
     moderate.insertAdjacentElement("beforeend", moderateText);
 }
+
+export {prioritiesIcon, priorities, priorityContent, critical, major, moderate};

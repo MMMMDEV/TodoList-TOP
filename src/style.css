@@ -28,10 +28,9 @@
     --item-width: 90%;
     --item-height: 50px;
     --side-list-size: 40px;
-    --check-size: 25px;
-    --remove-width: 3px;
-    --remove-height: 40%;
-    --hide-icon: 5px;
+    --check-size: 20px;
+    --remove-width: 2px;
+    --remove-height: 35%;
 }
 
 *, *::before, *::after {
@@ -95,6 +94,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 10px;
+    transition: 0.4s ease-in-out;
 }
 
 .text {
@@ -151,13 +151,13 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .priorities {
     width: 100%;
-    height: 50%;
+    height: 30%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -174,12 +174,18 @@ body {
 
 .priority-content {
     width: 100%;
-    height: 100%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 0.9rem;
+    scale: 1;
+}
+
+.priority-content-hide {
+    height: 0%;
+    scale: 0;
 }
 
 .critical {
@@ -213,6 +219,22 @@ body {
     align-items: center;
     gap: 10px;
     margin-left: 10px;
+}
+
+.under-construction {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.construction-text {
+    color: var(--white-color);
+    font-size: 1.4rem;
+    font-family: "mukta";
 }
 
 /* projects */
@@ -340,7 +362,7 @@ body {
 .hide-side-header img,
 .add-new-item img {
     margin: 0;
-    transition: 0.4s;
+    transition: 0.4s ease-in-out;
 }
 
 .hide-side-header img {
@@ -595,6 +617,11 @@ body {
     font-family: "Mukta";
 }
 
+.top-item {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
 .middle-item {
     width: 0%;
     height: 0%;
@@ -656,12 +683,13 @@ body {
 }
 
 .tittle-list-container {
-    width: calc(100% - var(--side-list-size));
+    width: calc(100% - (var(--side-list-size) * 2));
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.3s ease-in-out;
+    padding: 0px 8px;
 }
 
 .remove-container {

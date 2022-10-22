@@ -10,6 +10,9 @@ import { addContainer, form, inputDate, inputDesc, inputTittle, overlay, submit}
 import { DoneDiv, mainContent, sectionTypeText } from "../module/main-content.module";
 import { content, main, sideHeader } from "../module/first-load";
 import { endOfWeek, format, lastDayOfMonth, startOfWeek} from 'date-fns'
+import { critical, major, moderate, priorities, prioritiesIcon, priorityContent} from "../module/priorities-module";
+
+const underConstruction = document.createElement("div");
 
 function todaySection() {
     const todayMain = document.createElement("div");
@@ -37,7 +40,9 @@ function todaySection() {
         weekMain.remove();
         monthMain.remove();
         upcomingMain.remove();
+        underConstruction.remove();
         currentSection = todayMain;
+        addIcon.style.pointerEvents = "all";
         if (todayMain.hasChildNodes()) {
             DoneDiv.remove();
             mainContent.appendChild(todayMain);
@@ -45,6 +50,7 @@ function todaySection() {
             mainContent.style.alignItems = "flex-start";
         } else {
             mainContent.style.alignItems = "center";
+            mainContent.append(DoneDiv);
         }
     })
     
@@ -55,7 +61,9 @@ function todaySection() {
         todayMain.remove();
         monthMain.remove();
         upcomingMain.remove();
+        underConstruction.remove();
         currentSection = weekMain;
+        addIcon.style.pointerEvents = "all";
         if (weekMain.hasChildNodes()) {
             DoneDiv.remove();
             mainContent.appendChild(weekMain);
@@ -75,7 +83,9 @@ function todaySection() {
         todayMain.remove();
         weekMain.remove();
         upcomingMain.remove();
+        underConstruction.remove();
         currentSection = monthMain;
+        addIcon.style.pointerEvents = "all";
         if (monthMain.hasChildNodes()) {
             DoneDiv.remove();
             mainContent.appendChild(monthMain);
@@ -83,6 +93,7 @@ function todaySection() {
             mainContent.style.alignItems = "flex-start";
         } else {
             mainContent.style.alignItems = "center";
+            mainContent.append(DoneDiv);
         }
     })
     
@@ -93,6 +104,8 @@ function todaySection() {
         todayMain.remove();
         weekMain.remove();
         monthMain.remove();
+        underConstruction.remove();
+        addIcon.style.pointerEvents = "all";
         currentSection = upcomingMain;
         if (todayMain.hasChildNodes()) {
             DoneDiv.remove();
@@ -101,17 +114,17 @@ function todaySection() {
             mainContent.style.alignItems = "flex-start";
         } else {
             mainContent.style.alignItems = "center";
+            mainContent.append(DoneDiv);
         }
     })
     
-
     // addIcon
     addIcon.addEventListener("click", e => {
         addContainer.classList.add("active-add");
         overlay.classList.add("active-overlay");
         form.classList.add("form-active");
-
-         // form date
+        
+        // form date
         switch (currentSection) {
             case todayMain:
                 inputDate.min = today;
@@ -121,37 +134,37 @@ function todaySection() {
                 inputDate.required = false;
                 inputDate.style.pointerEvents = "none";
                 break;
-            case weekMain:
-                inputDate.min = currentyear + "-" + currentMonth + "-" + currentWeekStart;
-                inputDate.max = currentyear + "-" + currentMonth + "-" + currentWeekEnd;
+                case weekMain:
+                    inputDate.min = currentyear + "-" + currentMonth + "-" + currentWeekStart;
+                    inputDate.max = currentyear + "-" + currentMonth + "-" + currentWeekEnd;
+                    inputDate.value = today;
+                    inputDate.style.cursor = "pointer";
+                    inputDate.required = true;
+                    inputDate.style.pointerEvents = "all";
+                    break;
+                    case monthMain:
+                        inputDate.min = today;
+                        inputDate.max = lastDateOfMonth;
                 inputDate.value = today;
                 inputDate.style.cursor = "pointer";
                 inputDate.required = true;
                 inputDate.style.pointerEvents = "all";
                 break;
-            case monthMain:
-                inputDate.min = today;
-                inputDate.max = lastDateOfMonth;
-                inputDate.value = today;
-                inputDate.style.cursor = "pointer";
-                inputDate.required = true;
-                inputDate.style.pointerEvents = "all";
-                break;
-            case upcomingMain:
-                inputDate.min = today;
-                inputDate.max = "none";
-                inputDate.value = today;
-                inputDate.style.cursor = "pointer";
-                inputDate.required = true;
-                inputDate.style.pointerEvents = "all";
-                break;
-        }
-    })
-
-    // submit
-    submit.addEventListener("click", e => {
-        e.preventDefault();
-        if (inputTittle.value != "" && inputDesc.value != "" && inputDate.value != "") {
+                case upcomingMain:
+                    inputDate.min = today;
+                    inputDate.max = "none";
+                    inputDate.value = today;
+                    inputDate.style.cursor = "pointer";
+                    inputDate.required = true;
+                    inputDate.style.pointerEvents = "all";
+                    break;
+                }
+            })
+            
+            // submit
+            submit.addEventListener("click", e => {
+                e.preventDefault();
+                if (inputTittle.value != "" && inputDesc.value != "" && inputDate.value != "") {
             let tittleVal = inputTittle.value;
             let descVal = inputDesc.value;
             let dateVal = inputDate.value;
@@ -170,15 +183,15 @@ function todaySection() {
             const dateP = document.createElement("p");
             dateP.textContent = "";
             desc.textContent = "";
-
+            
             const tittleListContainer = document.createElement("div");
             const text = document.createElement("p");
             text.textContent = tittleVal;
-
+            
             const removeContainer = document.createElement("div");
             const sideOneRemove = document.createElement("div");
             const sideTwoRemove = document.createElement("div");
-
+            
             // add class
             currentSection.classList.add("main-todo-active");
             item.classList.add("item");
@@ -202,21 +215,24 @@ function todaySection() {
             mainContent.insertAdjacentElement("beforeend", currentSection);
             currentSection.insertAdjacentElement("beforeend", item);
             item.insertAdjacentElement("beforeend", topItem);
-            topItem.insertAdjacentElement("beforeend", checkContainer);
-            topItem.insertAdjacentElement("beforeend", tittleListContainer);
             item.insertAdjacentElement("beforeend", middleItem);
             item.insertAdjacentElement("beforeend", endItem);
+            topItem.insertAdjacentElement("beforeend", checkContainer);
+            topItem.insertAdjacentElement("beforeend", tittleListContainer);
+            topItem.insertAdjacentElement("beforeend", removeContainer);
             checkContainer.insertAdjacentElement("beforeend", buttonCheck);
             tittleListContainer.insertAdjacentElement("beforeend", text);
             middleItem.insertAdjacentElement("beforeend", descContainer);
             descContainer.insertAdjacentElement("beforeend", desc);
             endItem.insertAdjacentElement("beforeend", dateP);
-
+            removeContainer.insertAdjacentElement("beforeend", sideOneRemove);
+            removeContainer.insertAdjacentElement("beforeend", sideTwoRemove);
+            
             // hidding form
             addContainer.classList.remove("active-add");
             overlay.classList.remove("active-overlay");
             form.classList.remove("form-active");
-
+            
             buttonCheck.addEventListener("click", e => {
                 if (buttonCheck.checked === true) {
                     text.style.color = "#959595";
@@ -234,14 +250,16 @@ function todaySection() {
                     dateP.style.textDecoration = "none";
                 }
             })
-
+            
             // item expand
             
             let expand = false;
 
             item.addEventListener("click", e => {
+
                 expand = !expand;
-                if (e.target === buttonCheck) {
+
+                if (e.target === buttonCheck || e.target === removeContainer || e.target === sideOneRemove || e.target === sideTwoRemove) {
                     return;
                 } else {
                     if (expand === true) {
@@ -258,9 +276,24 @@ function todaySection() {
                         endItem.classList.remove("top-end-item-active");
                         desc.textContent = "";
                         dateP.textContent = "";
-
+                        
                     }
                 }
+            })
+            
+            // item remove
+            
+            sideOneRemove.addEventListener("click", e => {
+                item.remove();
+                currentSection.remove();
+                mainContent.append(DoneDiv);
+                mainContent.style.alignItems = "center";
+            })
+            sideTwoRemove.addEventListener("click", e => {
+                item.remove();
+                currentSection.remove();
+                mainContent.append(DoneDiv);
+                mainContent.style.alignItems = "center";
             })
             
         }
@@ -276,7 +309,7 @@ function todaySection() {
 
 function hideSideHeader() {
     let hide = false;
-
+    
     hideIcon.addEventListener("click", e => {
         hide = !hide;
         switch (hide) {
@@ -286,7 +319,7 @@ function hideSideHeader() {
                 main.classList.add("main-strech");
                 main.classList.remove("main-active");
                 break;
-
+                
             case false:
                 hideIcon.style.rotate = "0deg";
                 content.insertAdjacentElement("beforeend", sideHeader);
@@ -296,7 +329,69 @@ function hideSideHeader() {
         }
     }) 
 }
+              
+function hidePriorities() {
+    let hide  = false;
 
+    priorities.addEventListener("click", e => {
+        hide = !hide;
+        switch (hide) {
+            case true:
+                prioritiesIcon.style.rotate = "0deg";
+                setTimeout(() => {
+                    priorityContent.classList.add("priority-content-hide");
+                }, "400");
+                break;
 
-export {todaySection, hideSideHeader} ;
+            case false:
+                prioritiesIcon.style.rotate = "-90deg";
+                setTimeout(() => {
+                    priorityContent.classList.remove("priority-content-hide");
+                }, "400");
+                break;
+        }
+    })
+};
 
+function prioritySelection() {
+    const constructionText = document.createElement("p");
+    constructionText.textContent = "Section still under construction!";
+    
+    underConstruction.classList.add("under-construction");
+    constructionText.classList.add("construction-text");
+
+    underConstruction.append(constructionText);
+
+    let currentPriority;
+
+    critical.addEventListener("click", e => {
+        currentPriority = critical;
+        DoneDiv.remove();
+        mainContent.append(underConstruction);
+        sectionText.textContent = "Critical";
+        addIcon.style.pointerEvents = "none";
+    })
+
+    major.addEventListener("click", e => {
+        currentPriority = major;
+        DoneDiv.remove();
+        mainContent.append(underConstruction);
+        sectionText.textContent = "Major";
+        addIcon.style.pointerEvents = "none";
+    })
+
+    moderate.addEventListener("click", e => {
+        currentPriority = moderate;
+        DoneDiv.remove();
+        mainContent.append(underConstruction);
+        sectionText.textContent = "Moderate";
+        addIcon.style.pointerEvents = "none";
+    })
+
+    switch (currentPriority) {
+        case critical:
+            break;
+    }
+}
+
+export {todaySection, hideSideHeader, hidePriorities, prioritySelection} ;
