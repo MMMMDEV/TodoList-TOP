@@ -1,5 +1,5 @@
 import { todayContainer } from "../module/todo-list-module";
-import { hideIcon, sectionText } from "../module/main-header-module";
+import { addNewItem, headerMain, hideIcon, sectionText } from "../module/main-header-module";
 
 import { weekContainer } from "../module/todo-list-module";
 import { monthContainer } from "../module/todo-list-module";
@@ -11,19 +11,23 @@ import { DoneDiv, mainContent, sectionTypeText } from "../module/main-content.mo
 import { content, main, sideHeader } from "../module/first-load";
 import { endOfWeek, format, lastDayOfMonth, startOfWeek} from 'date-fns'
 import { critical, major, moderate, priorities, prioritiesIcon, priorityContent} from "../module/priorities-module";
+import { addProject, project, projectIcon } from "../module/projects-module";
+import { sources } from "../module/adjustments-module";
 
 const underConstruction = document.createElement("div");
+const underConstructionP = document.createElement("div");
+const sourcesMain = document.createElement("div");
+const todayMain = document.createElement("div");
+const weekMain = document.createElement("div");
+const monthMain = document.createElement("div");
+const upcomingMain = document.createElement("div");
+let currentSection = todayMain;
 
 function todaySection() {
-    const todayMain = document.createElement("div");
-    const weekMain = document.createElement("div");
-    const monthMain = document.createElement("div");
-    const upcomingMain = document.createElement("div");
     todayMain.classList.add("todoT-main");
     weekMain.classList.add("todoW-main");
     monthMain.classList.add("todoM-main");
     upcomingMain.classList.add("todoU-main");
-    let currentSection = todayMain;
     let today = format(new Date(), "yyyy-MM-dd");
     let firstDayOfMonth = format(new Date(), "yyyy-MM-01");
     let lastDateOfMonth = format(lastDayOfMonth(new Date()), "yyyy-MM-dd");
@@ -31,7 +35,6 @@ function todaySection() {
     let currentWeekEnd = format(endOfWeek(new Date()), "dd");
     let currentyear = format(new Date(), "yyyy");
     let currentMonth = format(new Date(), "MM");
-
     
     // today
     todayContainer.addEventListener("click", e => {
@@ -41,8 +44,13 @@ function todaySection() {
         monthMain.remove();
         upcomingMain.remove();
         underConstruction.remove();
+        underConstructionP.remove();
+        sourcesMain.remove();
         currentSection = todayMain;
         addIcon.style.pointerEvents = "all";
+        if (!headerMain.contains(addNewItem)) {
+            headerMain.insertAdjacentElement("beforeend", addNewItem);
+        }
         if (todayMain.hasChildNodes()) {
             DoneDiv.remove();
             mainContent.appendChild(todayMain);
@@ -62,8 +70,12 @@ function todaySection() {
         monthMain.remove();
         upcomingMain.remove();
         underConstruction.remove();
+        underConstructionP.remove();
+        sourcesMain.remove();
         currentSection = weekMain;
-        addIcon.style.pointerEvents = "all";
+        if (!headerMain.contains(addNewItem)) {
+            headerMain.insertAdjacentElement("beforeend", addNewItem);
+        }
         if (weekMain.hasChildNodes()) {
             DoneDiv.remove();
             mainContent.appendChild(weekMain);
@@ -84,8 +96,12 @@ function todaySection() {
         weekMain.remove();
         upcomingMain.remove();
         underConstruction.remove();
+        underConstructionP.remove();
+        sourcesMain.remove();
         currentSection = monthMain;
-        addIcon.style.pointerEvents = "all";
+        if (!headerMain.contains(addNewItem)) {
+            headerMain.insertAdjacentElement("beforeend", addNewItem);
+        }
         if (monthMain.hasChildNodes()) {
             DoneDiv.remove();
             mainContent.appendChild(monthMain);
@@ -105,8 +121,12 @@ function todaySection() {
         weekMain.remove();
         monthMain.remove();
         underConstruction.remove();
-        addIcon.style.pointerEvents = "all";
+        underConstructionP.remove();
+        sourcesMain.remove();
         currentSection = upcomingMain;
+        if (!headerMain.contains(addNewItem)) {
+            headerMain.insertAdjacentElement("beforeend", addNewItem);
+        }
         if (todayMain.hasChildNodes()) {
             DoneDiv.remove();
             mainContent.appendChild(upcomingMain);
@@ -145,11 +165,11 @@ function todaySection() {
                     case monthMain:
                         inputDate.min = today;
                         inputDate.max = lastDateOfMonth;
-                inputDate.value = today;
-                inputDate.style.cursor = "pointer";
-                inputDate.required = true;
-                inputDate.style.pointerEvents = "all";
-                break;
+                        inputDate.value = today;
+                        inputDate.style.cursor = "pointer";
+                        inputDate.required = true;
+                        inputDate.style.pointerEvents = "all";
+                        break;
                 case upcomingMain:
                     inputDate.min = today;
                     inputDate.max = "none";
@@ -165,91 +185,77 @@ function todaySection() {
             submit.addEventListener("click", e => {
                 e.preventDefault();
                 if (inputTittle.value != "" && inputDesc.value != "" && inputDate.value != "") {
-            let tittleVal = inputTittle.value;
-            let descVal = inputDesc.value;
-            let dateVal = inputDate.value;
-            
-            DoneDiv.remove();
-            // create obj
-            const item = document.createElement("div");
-            const checkContainer = document.createElement("div");
-            const buttonCheck = document.createElement("input");
-            buttonCheck.type = "checkbox";
-            const topItem = document.createElement("div");
-            const middleItem = document.createElement("div");
-            const descContainer = document.createElement("div");
-            const desc = document.createElement("p");
-            const endItem = document.createElement("div");
-            const dateP = document.createElement("p");
-            dateP.textContent = "";
-            desc.textContent = "";
-            
-            const tittleListContainer = document.createElement("div");
-            const text = document.createElement("p");
-            text.textContent = tittleVal;
-            
-            const removeContainer = document.createElement("div");
-            const sideOneRemove = document.createElement("div");
-            const sideTwoRemove = document.createElement("div");
-            
-            // add class
-            currentSection.classList.add("main-todo-active");
-            item.classList.add("item");
-            topItem.classList.add("top-item");
-            topItem.classList.add("top-end-item-active");
-            checkContainer.classList.add("check-container");
-            buttonCheck.classList.add("button-check");
-            middleItem.classList.add("middle-item");
-            descContainer.classList.add("desc-container");
-            desc.classList.add("desc");
-            endItem.classList.add("end-item");
-            dateP.classList.add("date-p");
-            tittleListContainer.classList.add("tittle-list-container");
-            text.classList.add("tittle-text");
-            removeContainer.classList.add("remove-container");
-            sideOneRemove.classList.add("side-one-remove");
-            sideTwoRemove.classList.add("side-two-remove");
-            mainContent.style.alignItems = "flex-start";
-            
-            // append
-            mainContent.insertAdjacentElement("beforeend", currentSection);
-            currentSection.insertAdjacentElement("beforeend", item);
-            item.insertAdjacentElement("beforeend", topItem);
-            item.insertAdjacentElement("beforeend", middleItem);
-            item.insertAdjacentElement("beforeend", endItem);
-            topItem.insertAdjacentElement("beforeend", checkContainer);
-            topItem.insertAdjacentElement("beforeend", tittleListContainer);
-            topItem.insertAdjacentElement("beforeend", removeContainer);
-            checkContainer.insertAdjacentElement("beforeend", buttonCheck);
-            tittleListContainer.insertAdjacentElement("beforeend", text);
-            middleItem.insertAdjacentElement("beforeend", descContainer);
-            descContainer.insertAdjacentElement("beforeend", desc);
-            endItem.insertAdjacentElement("beforeend", dateP);
-            removeContainer.insertAdjacentElement("beforeend", sideOneRemove);
-            removeContainer.insertAdjacentElement("beforeend", sideTwoRemove);
-            
-            // hidding form
-            addContainer.classList.remove("active-add");
-            overlay.classList.remove("active-overlay");
-            form.classList.remove("form-active");
-            
-            buttonCheck.addEventListener("click", e => {
-                if (buttonCheck.checked === true) {
-                    text.style.color = "#959595";
-                    text.style.textDecoration = "line-through";
-                    desc.style.color = "#959595";
-                    desc.style.textDecoration = "line-through";
-                    dateP.style.color = "#959595";
-                    dateP.style.textDecoration = "line-through";
-                } else {
-                    text.style.color = "#fafafa";
-                    text.style.textDecoration = "none";
-                    desc.style.color = "#fafafa";
-                    desc.style.textDecoration = "none";
-                    dateP.style.color = "#fafafa";
-                    dateP.style.textDecoration = "none";
-                }
-            })
+                    let tittleVal = inputTittle.value;
+                    let descVal = inputDesc.value;
+                    let dateVal = inputDate.value;
+
+                    DoneDiv.remove();
+                    // create obj
+                    const item = document.createElement("div");
+                    const checkContainer = document.createElement("div");
+                const buttonCheck = document.createElement("input");
+                buttonCheck.type = "checkbox";
+                const topItem = document.createElement("div");
+                const middleItem = document.createElement("div");
+                const descContainer = document.createElement("div");
+                const desc = document.createElement("p");
+                const endItem = document.createElement("div");
+                const dateP = document.createElement("p");
+                dateP.textContent = "";
+                desc.textContent = "";
+                
+                const tittleListContainer = document.createElement("div");
+                const text = document.createElement("p");
+                text.textContent = tittleVal;
+                
+                // add class
+                currentSection.classList.add("main-todo-active");
+                item.classList.add("item");
+                topItem.classList.add("top-item");
+                topItem.classList.add("top-end-item-active");
+                checkContainer.classList.add("check-container");
+                buttonCheck.classList.add("button-check");
+                middleItem.classList.add("middle-item");
+                descContainer.classList.add("desc-container");
+                desc.classList.add("desc");
+                endItem.classList.add("end-item");
+                dateP.classList.add("date-p");
+                tittleListContainer.classList.add("tittle-list-container");
+                text.classList.add("tittle-text");
+                mainContent.style.alignItems = "flex-start";
+                
+                // append
+                mainContent.insertAdjacentElement("beforeend", currentSection);
+                currentSection.insertAdjacentElement("beforeend", item);
+                item.insertAdjacentElement("beforeend", topItem);
+                item.insertAdjacentElement("beforeend", middleItem);
+                item.insertAdjacentElement("beforeend", endItem);
+                topItem.insertAdjacentElement("beforeend", checkContainer);
+                topItem.insertAdjacentElement("beforeend", tittleListContainer);
+                checkContainer.insertAdjacentElement("beforeend", buttonCheck);
+                tittleListContainer.insertAdjacentElement("beforeend", text);
+                middleItem.insertAdjacentElement("beforeend", descContainer);
+                descContainer.insertAdjacentElement("beforeend", desc);
+                endItem.insertAdjacentElement("beforeend", dateP);
+                
+                        
+                // hidding form
+                addContainer.classList.remove("active-add");
+                overlay.classList.remove("active-overlay");
+                form.classList.remove("form-active");
+                
+                // delete item
+                buttonCheck.addEventListener("click", e => {
+                    if (buttonCheck.checked === true) {
+                        item.remove();
+
+                        if (!currentSection.hasChildNodes()) {
+                            currentSection.remove();
+                            mainContent.append(DoneDiv);
+                            mainContent.style.alignItems = "center";
+                        }
+                    }
+                })
             
             // item expand
             
@@ -259,7 +265,7 @@ function todaySection() {
 
                 expand = !expand;
 
-                if (e.target === buttonCheck || e.target === removeContainer || e.target === sideOneRemove || e.target === sideTwoRemove) {
+                if (e.target === buttonCheck) {
                     return;
                 } else {
                     if (expand === true) {
@@ -281,20 +287,6 @@ function todaySection() {
                 }
             })
             
-            // item remove
-            
-            sideOneRemove.addEventListener("click", e => {
-                item.remove();
-                currentSection.remove();
-                mainContent.append(DoneDiv);
-                mainContent.style.alignItems = "center";
-            })
-            sideTwoRemove.addEventListener("click", e => {
-                item.remove();
-                currentSection.remove();
-                mainContent.append(DoneDiv);
-                mainContent.style.alignItems = "center";
-            })
             
         }
         
@@ -354,6 +346,43 @@ function hidePriorities() {
 };
 
 function prioritySelection() {
+    const constructionTextP = document.createElement("p");
+    constructionTextP.textContent = "Section still under construction!";
+    
+    underConstructionP.classList.add("under-construction");
+    constructionTextP.classList.add("construction-text");
+
+    underConstructionP.append(constructionTextP);
+
+    critical.addEventListener("click", e => {
+        DoneDiv.remove();
+        addNewItem.remove();
+        sourcesMain.remove();
+        mainContent.append(underConstructionP);
+        underConstruction.remove();
+        sectionText.textContent = "Critical";
+    })
+
+    major.addEventListener("click", e => {
+        DoneDiv.remove();
+        addNewItem.remove();
+        sourcesMain.remove();
+        mainContent.append(underConstructionP);
+        underConstruction.remove();
+        sectionText.textContent = "Major";
+    })
+
+    moderate.addEventListener("click", e => {
+        DoneDiv.remove();
+        addNewItem.remove();
+        sourcesMain.remove();
+        mainContent.append(underConstructionP);
+        underConstruction.remove();
+        sectionText.textContent = "Moderate";
+    })
+}
+
+function projects() {
     const constructionText = document.createElement("p");
     constructionText.textContent = "Section still under construction!";
     
@@ -362,36 +391,44 @@ function prioritySelection() {
 
     underConstruction.append(constructionText);
 
-    let currentPriority;
+    let hideProject = false;
 
-    critical.addEventListener("click", e => {
-        currentPriority = critical;
+    addProject.addEventListener("click", e => {
         DoneDiv.remove();
+        sourcesMain.remove();
+        underConstructionP.remove();
         mainContent.append(underConstruction);
-        sectionText.textContent = "Critical";
-        addIcon.style.pointerEvents = "none";
+        sectionText.textContent = "Projects";
+    }); 
+    
+    project.addEventListener("click", e => {
+        hideProject = !hideProject;
+        if (hideProject) {
+            projectIcon.style.rotate = "0deg";
+        } else {
+            projectIcon.style.rotate = "-90deg";
+        }
     })
-
-    major.addEventListener("click", e => {
-        currentPriority = major;
-        DoneDiv.remove();
-        mainContent.append(underConstruction);
-        sectionText.textContent = "Major";
-        addIcon.style.pointerEvents = "none";
-    })
-
-    moderate.addEventListener("click", e => {
-        currentPriority = moderate;
-        DoneDiv.remove();
-        mainContent.append(underConstruction);
-        sectionText.textContent = "Moderate";
-        addIcon.style.pointerEvents = "none";
-    })
-
-    switch (currentPriority) {
-        case critical:
-            break;
-    }
 }
 
-export {todaySection, hideSideHeader, hidePriorities, prioritySelection} ;
+function sourcesFunction() {
+    const iconLink = document.createElement("a");
+    sources.addEventListener("click", e => {
+        DoneDiv.remove();
+        underConstruction.remove();
+        underConstructionP.remove();
+        addNewItem.remove();
+        sectionText.textContent = "Sources";
+        
+        iconLink.textContent = "All icons have been gathered from Flaticon, uicons. This is a link to that exact page.";
+
+        sourcesMain.classList.add("sources-main");
+        iconLink.classList.add("icon-link");
+        iconLink.href = "https://www.flaticon.com/uicons/interface-icons";
+
+        mainContent.append(sourcesMain);
+        sourcesMain.append(iconLink);
+    })
+}
+
+export {todaySection, hideSideHeader, hidePriorities, prioritySelection, projects, sourcesFunction, todayMain, weekMain, monthMain, upcomingMain} ;

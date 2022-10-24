@@ -3,16 +3,17 @@ import { sideHeader } from "./first-load";
 import prioritiesArrawIcon from "../images/angle-left.svg";
 import addProjectIcon from "../images/plus.svg"
 
+const addProject = document.createElement("div");
+const project = document.createElement("div");
+const projectIcon = document.createElement("img");
+
 export function projectsFunction() {
     // create obj
     const projects = document.createElement("div");
-    const project = document.createElement("div");
-    const projectIcon = document.createElement("img");
     const projectText = document.createElement("p");
     projectText.textContent = "Projects";
     projectIcon.src = prioritiesArrawIcon;
     const projectsContent = document.createElement("div");
-    const addProject = document.createElement("div");
     const addIcon = document.createElement("img");
     const addText = document.createElement("p");
 
@@ -39,3 +40,5 @@ export function projectsFunction() {
     addProject.insertAdjacentElement("beforeend", addIcon);
     addProject.insertAdjacentElement("beforeend", addText);
 };
+
+export {addProject, project, projectIcon};

@@ -7,15 +7,15 @@ const sectionText = document.createElement("p");
 
 const addIcon = document.createElement("img");
 const hideIcon = document.createElement("img");
+const headerMain = document.createElement("div");
+const addNewItem = document.createElement("div");
 
 export function mainHeaderFunction() {
     // create obj
-    const headerMain = document.createElement("div");
     const hideSideHeader = document.createElement("div");
     hideIcon.src = ArrawIcon;
     const currentSection  = document.createElement("div");
     sectionText.textContent = "Today";
-    const addNewItem = document.createElement("div");
     addIcon.src = AddIcon;
 
     // add classes
@@ -38,4 +38,4 @@ export function mainHeaderFunction() {
 
 }
 
-export {sectionText, addIcon, hideIcon};
+export {sectionText, addIcon, hideIcon, headerMain, addNewItem};

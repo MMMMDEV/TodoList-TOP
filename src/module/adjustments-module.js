@@ -3,11 +3,12 @@ import { sideHeader } from "./first-load";
 import sourcesIconWorld from "../images/world.svg";
 import settingsIconGear from "../images/settings.svg";
 
+const sources = document.createElement("div");
+
 export function adjustmentsFunction() {
     // create obj
     const adjustments = document.createElement("div");
 
-    const sources = document.createElement("div");
     const sourcesIcon = document.createElement("img");
     const sourcesText = document.createElement("p");
     sourcesIcon.src = sourcesIconWorld;
@@ -40,3 +41,4 @@ export function adjustmentsFunction() {
     settings.insertAdjacentElement("beforeend", settingsText);
 
 }
+export {sources};

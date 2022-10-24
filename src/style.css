@@ -28,9 +28,7 @@
     --item-width: 90%;
     --item-height: 50px;
     --side-list-size: 40px;
-    --check-size: 20px;
-    --remove-width: 2px;
-    --remove-height: 35%;
+    --check-size: 25px;
 }
 
 *, *::before, *::after {
@@ -619,7 +617,6 @@ body {
 
 .top-item {
     font-size: 1.1rem;
-    font-weight: bold;
 }
 
 .middle-item {
@@ -692,36 +689,30 @@ body {
     padding: 0px 8px;
 }
 
-.remove-container {
-    width: var(--side-list-size);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.side-one-remove,
-.side-two-remove {
-    width: var(--remove-width);
-    height: var(--remove-height);
-    background-color: var(--white-color);
-    position: absolute;
-    background-color: #DB5757;
-}
-
-.side-one-remove {
-    rotate: 45deg;
-}
-
-.side-two-remove {
-    rotate: -45deg;
-}
-
 .tittle-text {
     color: var(--white-color);
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: "mukta";
     transition: 0.5s ease-in-out;
+}
+
+/* sources */
+
+.sources-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.icon-link,
+.icon-link:visited {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--white-color);
+    font-family: "mukta";
+    padding: 0px 10px;
 }
